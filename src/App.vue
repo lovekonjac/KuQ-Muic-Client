@@ -1,34 +1,36 @@
 <template>
   <div id="app">
-    
-    <the-header/>
-    <router-view class="music-content"/>
     <song-audio/>
-    <the-aside/>
+    <the-header/>
+    <the-aside></the-aside>
+    <router-view class="music-content"/>
     <play-bar/>
     <scroll-top/>
     <the-footer/>
   </div>
 </template>
+
 <script>
-import TheHeader from './components/TheHeader'
 import ScrollTop from './components/ScrollTop'
-import TheFooter from './components/TheFooter'
 import SongAudio from './components/SongAudio'
+import TheHeader from './components/TheHeader'
+import TheFooter from './components/TheFooter'
 import PlayBar from './components/PlayBar'
 import TheAside from './components/TheAside'
+
 export default {
   name: 'App',
   components: {
-    TheHeader,
     ScrollTop,
-    TheFooter,
     SongAudio,
-    PlayBar,
-    TheAside
+    TheHeader,
+    TheFooter,
+    TheAside,
+    PlayBar
   }
 }
 </script>
-<style lang="scss" scoped>
+
+<style  lang="scss" scoped>
 @import './assets/css/app.scss';
 </style>

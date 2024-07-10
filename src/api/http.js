@@ -4,23 +4,20 @@ axios.defaults.timeout = 5000;  //超时时间设置
 axios.defaults.withCredentials = true;  //true允许跨域
 //Content-Type 响应头
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
-// //基础url
-// if (process.env.NODE_ENV === 'production') {
-//   /*第二层if，根据.env文件中的VUE_APP_FLAG判断是生产环境还是测试环境*/
-//   if (process.env.VUE_APP_FLAG === 'pro') {
-//     //production 生产环境
-//     axios.defaults.baseURL = 'http://127.0.0.1:4523/m1/4752926-4406107-default';
-//   } else {
-//     //test 测试环境
-//     axios.defaults.baseURL = 'http://127.0.0.1:4523/m1/4752926-4406107-default';
-//   }
-// } else {
-//   //dev 开发环境
-//   axios.defaults.baseURL = 'http://127.0.0.1:4523/m1/4752926-4406107-default';
-// }
 
-axios.defaults.baseURL = 'http://localhost:8888';
-
+if (process.env.NODE_ENV === 'production') {
+  /*第二层if，根据.env文件中的VUE_APP_FLAG判断是生产环境还是测试环境*/
+  if (process.env.VUE_APP_FLAG === 'pro') {
+    //production 生产环境
+    axios.defaults.baseURL = 'http://localhost:8888';
+  } else {
+    //test 测试环境
+    axios.defaults.baseURL = 'http://localhost:8888';
+  }
+} else {
+  //dev 开发环境
+  axios.defaults.baseURL = 'http://localhost:8888';
+}
 
 // 响应拦截器
 axios.interceptors.response.use(
@@ -34,44 +31,39 @@ axios.interceptors.response.use(
     }
   },
   // 服务器状态码不是2开头的的情况
-  // 服务器状态码不是2开头的的情况
-error => {
-  // 检查error.response是否存在
-  if (error.response && error.response.status) {
-    switch (error.response.status) {
-      // 401: 未登录
-      case 401:
-        router.replace({
-          path: '/',
-          query: {
-            redirect: router.currentRoute.fullPath
-          }
-        });
-        break;
-      case 403:
-        // console.log('管理员权限已修改请重新登录')
-        // 跳转登录页面，并将要浏览的页面fullPath传过去，登录成功后跳转需要访问的页面
-        setTimeout(() => {
+  error => {
+    if (error.response.status) {
+      switch (error.response.status) {
+        // 401: 未登录
+        case 401:
           router.replace({
             path: '/',
             query: {
               redirect: router.currentRoute.fullPath
             }
           });
-        }, 1000);
-        break;
+          break;
+        case 403:
+          // console.log('管理员权限已修改请重新登录')
+          // 跳转登录页面，并将要浏览的页面fullPath传过去，登录成功后跳转需要访问的页面
+          setTimeout(() => {
+            router.replace({
+              path: '/',
+              query: {
+                redirect: router.currentRoute.fullPath
+              }
+            });
+          }, 1000);
+          break;
 
-      // 404请求不存在
-      case 404:
-        // console.log('请求页面飞到火星去了')
-        break;
+        // 404请求不存在
+        case 404:
+          // console.log('请求页面飞到火星去了')
+          break;
+      }
+      return Promise.reject(error.response);
     }
-  } else {
-    // 处理没有response的情况
-    console.error('Network Error', error);
-  }
-  return Promise.reject(error);
-});
+  });
 
 
 

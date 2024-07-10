@@ -31,7 +31,6 @@
     vertical-align: middle;
   }
 }
-
 /*nav*/
 .navbar {
   height: $header-height;
@@ -133,9 +132,9 @@
     /*一个正方形倾斜四十五度就是三角了但是要把下半部分藏起来*/
     transform: rotate(45deg);
   }
-  /*:nth-child(1):hover:before {
-   background-color: $theme-color;
-   }*/
+  // :nth-child(1):hover:before {
+  // background-color: $theme-color;
+  // }
 }
 
 .show {

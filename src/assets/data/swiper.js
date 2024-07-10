@@ -9,4 +9,3 @@ const swiperList = [
   export {
     swiperList
   }
-  

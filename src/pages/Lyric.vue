@@ -20,7 +20,7 @@
 <script>
 import {mixin} from '../mixins'
 import { mapGetters } from 'vuex'
-//import Comment from '../components/Comment'
+import Comment from '../components/Comment'
 
 export default {
   name: 'lyric',
@@ -55,11 +55,13 @@ export default {
         for (let i = 0; i < this.lyr.length; i++) {
           if (this.curTime >= this.lyr[i][0]) {
             for (let j = 0; j < this.lyr.length; j++) {
+              // 重置所有歌词的样式，避免之前的歌词仍然高亮
               document.querySelectorAll('.has-lyric li')[j].style.color = '#000'
               document.querySelectorAll('.has-lyric li')[j].style.fontSize = '15px'
             }
             if (i >= 0) {
-              document.querySelectorAll('.has-lyric li')[i].style.color = '#95d2f6'
+              // 高亮当前歌词
+              document.querySelectorAll('.has-lyric li')[i].style.color = '#8c51f0'
               document.querySelectorAll('.has-lyric li')[i].style.fontSize = '25px'
             }
           }

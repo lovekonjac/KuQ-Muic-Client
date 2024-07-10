@@ -24,7 +24,7 @@
           <use xlink:href="#icon-ziyuanldpi1"></use>
         </svg>
       </div>
-      <!--歌曲图片,点击去歌词页面-->
+      <!--歌曲图片-->
       <div class="item-img" @click="goPlayerPage">
          <img :src=picUrl alt="">
       </div>
@@ -61,7 +61,7 @@
         </svg>
         <el-slider class="volume" v-model="volume" :vertical="true"></el-slider>
       </div>
-      <!--收藏-->
+      <!--添加-->
       <div class="item" @click="collection">
         <svg :class="{ active: isActive }" class="icon" aria-hidden="true">
           <use xlink:href="#icon-xihuan-shi"></use>
@@ -120,7 +120,7 @@ export default {
       'listIndex', // 当前歌曲在歌曲列表的位置
       'showAside', // 是否显示侧边栏
       'autoNext', // 用于触发自动播放下一首
-      'isActive'//当前歌曲是否收藏
+      'isActive'
     ])
   },
   watch: {
@@ -333,7 +333,7 @@ export default {
               this.$store.commit('setIsActive', true)
               this.notify('收藏成功', 'success')
             } else if (res.code === 2) {
-              this.notify('已经收藏过了', 'warning')
+              this.notify('已收藏', 'warning')
             } else {
               this.$notify.error({
                 title: '收藏失败',

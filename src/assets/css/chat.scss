@@ -1,0 +1,72 @@
+.talkContent {
+    margin: 30px 10%;
+    margin-top: $header-height + 20px;
+    padding-bottom: 50px;
+    background-color: $color-white;
+    font-size: 14px;
+}
+
+.talkShow {
+    height: 400px;
+    margin: 10px auto 0;
+    overflow: auto;
+}
+
+.talkInput {
+    margin: 10px auto 0;
+    display: flex;
+}
+.mechanicalTalk {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+}
+
+.mechanicalTalk span {
+    flex-grow: 0;
+    background: white;
+    border-radius: 10px;
+    padding: 5px 10px;
+    border: 1px solid rgb(214, 216, 219);
+    border-top-left-radius: 0px;
+    word-break: break-all;
+    text-align: left;
+}
+
+.mechanicalTalk::before {
+    content: '';
+    background: url('/src/assets/img/robot.jpg') no-repeat center center; // 使用机器人头像
+    background-size: 30px;
+    width: 30px;
+    height: 30px;
+    margin-right: 15px; // 增加右边距以避免压瘪
+    flex-shrink: 0; // 防止头像被压缩
+}.mineTalk {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; // 确保从右侧开始
+    margin: 10px;
+    text-align: right;
+}
+
+.mineTalk span {
+    flex-grow: 0;
+    background: #409eff;
+    border-radius: 10px;
+    border-top-right-radius: 0px;
+    color: #fff;
+    padding: 5px 10px;
+    word-break: break-all;
+    text-align: left;
+}
+
+.mineTalk::after {
+    content: '';
+    background: url('/src/assets/img/user.jpg') no-repeat center center; // 使用用户头像
+    background-size: 30px;
+    width: 30px;
+    height: 30px;
+    margin-left: 15px; // 增加左边距以避免压瘪
+    flex-shrink: 0; // 防止头像被压缩
+    order: 1; // 确保头像在文本后面
+}
