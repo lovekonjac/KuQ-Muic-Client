@@ -1,3 +1,3 @@
-# KuQ-Muic-Client
+# KuQ-Music-Client
 前端仓库
 Vue2 + Vue-Router + Vuex + Axios + ElementUI
